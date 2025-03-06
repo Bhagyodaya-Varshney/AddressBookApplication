@@ -3,6 +3,7 @@ package com.example.AddressBookApp.controllers;
 
 import com.example.AddressBookApp.dto.AddressBookDTO;
 import com.example.AddressBookApp.model.AddressBookModel;
+import com.example.AddressBookApp.services.AddressBookInterface;
 import com.example.AddressBookApp.services.AddressBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 public class AddressBookController {
 
     @Autowired
-    AddressBookService addressBookService;
+    AddressBookInterface addressBookInterface;
 
     @GetMapping("/")
     public String sayGreeting(){
@@ -24,27 +25,27 @@ public class AddressBookController {
 
     @PostMapping("/addAddress")
     public ResponseEntity<String> addAddress(@RequestBody AddressBookDTO addressBookDTO){
-        addressBookService.add(addressBookDTO);
+        addressBookInterface.add(addressBookDTO);
         return ResponseEntity.ok("Address Added Successfully");
     }
 
     @GetMapping("/getAddress")
     public ResponseEntity<List<AddressBookModel>> getAddress(){
-        return ResponseEntity.ok(addressBookService.getAllAddress());
+        return ResponseEntity.ok(addressBookInterface.getAllAddress());
     }
 
     @GetMapping("/getAddress/{id}")
     public AddressBookModel getAddessById(@PathVariable Long id){
-        return addressBookService.getById(id);
+        return addressBookInterface.getById(id);
     }
 
     @PutMapping("/updateAddress/{id}")
     public AddressBookModel updateAddressById(@PathVariable Long id,@RequestBody AddressBookDTO addressBookDTO){
-        return addressBookService.updateAddress(id,addressBookDTO);
+        return addressBookInterface.updateAddress(id,addressBookDTO);
     }
 
     @DeleteMapping("/deleteAddress/{id}")
     public ResponseEntity<String> deleteAddressById(@PathVariable Long id){
-        return addressBookService.deleteAddress(id);
+        return addressBookInterface.deleteAddress(id);
     }
 }
