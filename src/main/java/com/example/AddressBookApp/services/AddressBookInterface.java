@@ -10,9 +10,9 @@ import java.util.List;
 
 @Service
 public interface AddressBookInterface {
-    void add(@RequestBody AddressBookDTO addressBookDTO);
+    ResponseEntity<String> add(@RequestBody AddressBookDTO addressBookDTO);
     List<AddressBookModel> getAllAddress();
     AddressBookModel getById(Long id);
-    AddressBookModel updateAddress(Long id, AddressBookDTO addressBookDTO);
+    ResponseEntity<String> updateAddress(Long id, AddressBookDTO addressBookDTO);
     ResponseEntity<String> deleteAddress(Long id);
 }
