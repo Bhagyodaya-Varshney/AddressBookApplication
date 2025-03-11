@@ -1,4 +1,4 @@
-package com.example.AddressBookApp.services;
+package com.example.AddressBookApp.serviceInterfaces;
 
 import com.example.AddressBookApp.dto.AddressBookDTO;
 import com.example.AddressBookApp.model.AddressBookModel;

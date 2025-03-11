@@ -1,4 +1,4 @@
-package com.example.AddressBookApp.services;
+package com.example.AddressBookApp.serviceInterfaces;
 
 import com.example.AddressBookApp.dto.LoginDTO;
 import com.example.AddressBookApp.dto.RegisterDTO;
@@ -18,4 +18,5 @@ public interface UserInterface {
     boolean matchPassword(String rawPassword, String encodedPassword);
     ResponseEntity<Map<String, String>> forgotPassword(String email, String newPassword);
     ResponseEntity<Map<String, String>> resetPassword(String email, String currentPassword, String newPassword);
+    ResponseEntity<Map<String, String>> logoutUser(Long id);
 }

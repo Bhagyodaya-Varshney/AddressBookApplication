@@ -2,7 +2,7 @@ package com.example.AddressBookApp.controllers;
 
 import com.example.AddressBookApp.dto.AddressBookDTO;
 import com.example.AddressBookApp.model.AddressBookModel;
-import com.example.AddressBookApp.services.AddressBookInterface;
+import com.example.AddressBookApp.serviceInterfaces.AddressBookInterface;
 import com.example.AddressBookApp.exception.AddressBookException;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
