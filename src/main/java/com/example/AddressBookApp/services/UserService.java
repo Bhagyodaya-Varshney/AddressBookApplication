@@ -27,6 +27,8 @@ public class UserService implements UserInterface {
     EmailService emailService;
     @Autowired
     JwtUtility jwtUtility;
+    @Autowired
+    RabbitMQProducer rabbitMQProducer;
 
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
@@ -52,7 +54,9 @@ public class UserService implements UserInterface {
         userRepository.save(user);
         log.info("User {} registered successfully!", user.getEmail());
 
-        emailService.sendEmail(user.getEmail(), "Welcome to Our Platform!",
+
+        rabbitMQProducer.sendEmailNotification(user.getEmail(),
+                "Welcome to Our Platform!",
                 "Hello " + user.getFullName() + ",\n\nYour account has been successfully created!");
 
         res.setMessage("message");
@@ -74,7 +78,8 @@ public class UserService implements UserInterface {
                 userRepository.save(user);
                 log.debug("Login successful for user: {} - Token generated", user.getEmail());
 
-                emailService.sendEmail(user.getEmail(), "Welcome Back!",
+                rabbitMQProducer.sendEmailNotification(user.getEmail(),
+                        "Welcome Back!",
                         "Hello " + user.getFullName() + ",\n\nYou have successfully logged in. Your token: " + token);
                 res.setMessage("message");
                 res.setMessageData("User Logged In Successfully: " + token);
