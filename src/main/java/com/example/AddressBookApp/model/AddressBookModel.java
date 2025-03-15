@@ -2,7 +2,6 @@ package com.example.AddressBookApp.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.context.annotation.Bean;
 
 @Entity
 @Table(name = "AddressBook")
