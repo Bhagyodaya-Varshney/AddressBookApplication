@@ -26,9 +26,14 @@ public class AddressBookService implements AddressBookInterface {
     public ResponseDTO<String, String> add(AddressBookDTO addressBookDTO) {
         log.info("Received request to add address: {}", addressBookDTO);
         AddressBookModel addressBookModel = new AddressBookModel();
+
         addressBookModel.setName(addressBookDTO.getName());
         addressBookModel.setAddress(addressBookDTO.getAddress());
+        addressBookModel.setCity(addressBookDTO.getCity());
+        addressBookModel.setState(addressBookDTO.getState());
+        addressBookModel.setZipCode(addressBookDTO.getZipCode());
         addressBookModel.setPhoneNumber(addressBookDTO.getPhoneNumber());
+
         ResponseDTO<String, String> res = new ResponseDTO<>();
         try {
             addressBookRepositories.save(addressBookModel);
